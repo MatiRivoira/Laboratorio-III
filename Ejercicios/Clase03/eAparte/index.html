@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Alumno</title>
+    <link rel="icon" href="./img/icon.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/funciones.js"></script>
+    <script src="./js/form.js"></script>
+</head>
+<body>
+        <form>
+            <div class="item">
+                <input type="text" id="legajo" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Legajo</span>
+                </label>
+            </div>
+            <div class="item">
+                <input type="text" id="nombre" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Nombre</span>
+                </label>
+            </div>
+            <div class="item">
+                <input type="text" id="apellido" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Apellido</span>
+                </label>
+            </div> <br>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSONs('agregar')" disabled><span>Agregar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSONs('borrar')" disabled><span>Borrar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSONs('modificar')" disabled><span>Modificar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSONs('listar')" disabled><span>Listar</span></button>
+        </form>
+    </body>
+    </html>

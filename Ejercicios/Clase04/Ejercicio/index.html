@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Alumno</title>
+    <link rel="icon" href="./img/icon.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/funciones.js"></script>
+    <script src="./js/form.js"></script>
+</head>
+<body>
+        <form>
+            <div class="item">
+                <input type="text" id="legajo" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Legajo</span>
+                </label>
+            </div>
+            <div class="item">
+                <input type="text" id="nombre" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Nombre</span>
+                </label>
+            </div>
+            <div class="item">
+                <input type="text" id="apellido" required>
+                <label class="lbl-nombre">
+                    <span class="text-nomb">Apellido</span>
+                </label>
+            </div>
+            <div class="item">
+                <input type="file" id="foto" required>
+            </div>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('agregar')" disabled><span>Agregar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('borrar')" disabled><span>Borrar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('modificar')" disabled><span>Modificar</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('listar')" disabled><span>Listar</span></button><br>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('listar_objetos')" disabled><span>Listar Objs</span></button>
+            <button class="boton" type="submit" onclick="Funciones.AjaxPostJSON('listar_tabla')" disabled><span>Listar Tabla</span></button>
+            <br><br><br>
+            <h1 style="color: #FFD369;">Listado de alumnos</h1>
+            <div style="display: inline;" id="tablaContainer">
+                <p id="listadoAlumnos" style="color: white;">...</p>
+            </div>
+        </form>
+    </body>
+    </html>
