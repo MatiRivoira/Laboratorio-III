@@ -23,10 +23,14 @@ var Funciones;
             // Función de callback
             xhttp.onreadystatechange = () => {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    if (accion == "listar_tabla") {
+                    if (accion == "listar_objetos") {
                         document.getElementById("listadoAlumnos").textContent = xhttp.responseText;
                     }
-                    else if (accion == "listar") {
+                    else if (accion == "listar_tabla") {
+                        let tablaContainer = document.getElementById("tablaContainer");
+                        if (tablaContainer) {
+                            tablaContainer.innerHTML = xhttp.responseText;
+                        }
                     }
                     else {
                         alert(xhttp.responseText);

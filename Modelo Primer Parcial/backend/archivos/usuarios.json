@@ -1,0 +1,34 @@
+[
+    {
+        "id": 9131,
+        "nombre": "1",
+        "correo": "1",
+        "clave": "1",
+        "id_perfil": 9131,
+        "perfil": ""
+    },
+    {
+        "id": 2167,
+        "nombre": "2",
+        "correo": "2",
+        "clave": "2",
+        "id_perfil": 2167,
+        "perfil": ""
+    },
+    {
+        "id": 8166,
+        "nombre": "1",
+        "correo": "1",
+        "clave": "1",
+        "id_perfil": 8166,
+        "perfil": ""
+    },
+    {
+        "id": 7476,
+        "nombre": "asd",
+        "correo": "asd",
+        "clave": "asd",
+        "id_perfil": 7476,
+        "perfil": ""
+    }
+]
