@@ -22,5 +22,11 @@
         "marca": "asd",
         "color": "asd",
         "precio": 123
+    },
+    {
+        "patente": "asd",
+        "marca": "asdasd",
+        "color": "asd",
+        "precio": 123
     }
 ]

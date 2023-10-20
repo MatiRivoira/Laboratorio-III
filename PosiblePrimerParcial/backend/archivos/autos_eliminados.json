@@ -33,5 +33,12 @@
         "color": "asd",
         "precio": 123,
         "pathFoto": ""
+    },
+    {
+        "patente": "asd",
+        "marca": "asdasd",
+        "color": "asd",
+        "precio": 123,
+        "pathFoto": ""
     }
 ]

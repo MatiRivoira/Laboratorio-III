@@ -186,7 +186,7 @@ var PrimerParcial;
             let auto = new Entidades.AutoBD(obj.patente, obj.marca, obj.color, obj.precio, obj.pathFoto);
             if (confirm(`Esta seguro de que quiere eliminar el auto con la patente: ${auto.patente} y marca ${auto.marca}`)) {
                 let form = new FormData();
-                form.append("auto_json", JSON.stringify(obj));
+                form.append("auto_json", auto.ToJSON());
                 $.ajax({
                     type: "POST",
                     url: "./backend/eliminarAutoBD.php",
