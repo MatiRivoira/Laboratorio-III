@@ -1,3 +1,5 @@
+/// <reference path="Auto.ts" />
+
 namespace Entidades {
     export class AutoBD extends Auto {
         public pathFoto:string;
@@ -7,8 +9,10 @@ namespace Entidades {
             this.pathFoto = pathFoto;
         }
 
-        public ToJSON(): string {
-            return JSON.stringify(JSON.parse(this.ToString() + `, pathFoto: ${this.pathFoto}`));
+        ToJSON(){
+            let autoString = super.ToString();
+            let autoJson = autoString + `, "pathFoto": "${this.pathFoto}"`;
+            return "{" + autoJson + "}"; 
         }
     }
 }

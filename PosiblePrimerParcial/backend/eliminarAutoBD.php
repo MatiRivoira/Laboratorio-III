@@ -2,7 +2,7 @@
 
 use RivoiraMatias\autoBD;
 
-include_once "./clases/autoDB.php";
+require_once "./clases/autoDB.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auto = json_decode($_POST["auto_json"], true);

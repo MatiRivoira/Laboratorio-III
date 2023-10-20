@@ -12,12 +12,12 @@ namespace Entidades {
             this.precio = precio;
         }
 
-        public ToString() : string {
-            return `Nombre: ${this.patente}, Correo: ${this.marca}, Clave: ${this.color}, Precio: ${this.precio}`;
+        ToString(): string {
+            return `"patente": "${this.patente}", "marca": "${this.marca}", "color": "${this.color}", "precio": "${this.precio}"`;
         }
 
-        public ToJSON(): string {
-            return JSON.stringify(JSON.parse(this.ToString()));
+        ToJSON() {
+            return "{" + this.ToString() + "}";
         }
     }
 }

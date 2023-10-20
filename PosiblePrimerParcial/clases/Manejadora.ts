@@ -1,4 +1,6 @@
 /// <reference path="./node_modules/@types/jquery/index.d.ts">
+/// <reference path="Auto.ts" />
+/// <reference path="AutoBD.ts" />
 /// <reference path="Iparte2.ts" />
 
 namespace PrimerParcial {
@@ -171,12 +173,10 @@ namespace PrimerParcial {
                         let obj = JSON.parse(objString);
                         console.log(obj);
     
-                        $("#id").val(obj.id);
-                        $("#nombre").val(obj.nombre);
-                        $("#correo").val(obj.correo);
-                        $("#clave").val(obj.clave);
-                        $("#cboPerfiles").val(obj.id_perfil);
-    
+                        $("#patente").val(obj.patente);
+                        $("#marca").val(obj.marca);
+                        $("#precio").val(obj.precio);
+                        $("#color").val(obj.color);
                     });
             
                     $('[data-action="eliminar"]').on("click", function(){
@@ -196,27 +196,63 @@ namespace PrimerParcial {
             });
         }
 
-        EliminarAuto(obj:string) : void {
-            let form:FormData = new FormData();
-            form.append("auto_json", JSON.stringify(obj));
-            
-            $.ajax({
-                type:"POST",
-                url: "./backend/eliminarAutoBD.php",
-                dataType: "text",
-                cache: false,
-                contentType: false, //cuando se envia por frmdata
-                processData: false, //cuando se envia por frmdata
-                data: form
-            })
-            .done((mensaje:any)=>{
-                alert(mensaje);
-                $("#btnMostrar").click();
-            });
+        EliminarAuto(obj:any) : void {
+            let auto = new Entidades.AutoBD(obj.patente, obj.marca, obj.color, obj.precio, obj.pathFoto);
+            if (confirm(`Esta seguro de que quiere eliminar el auto con la patente: ${auto.patente} y marca ${auto.marca}`)) {
+                let form:FormData = new FormData();
+                form.append("auto_json", JSON.stringify(obj));
+                $.ajax({
+                    type:"POST",
+                    url: "./backend/eliminarAutoBD.php",
+                    dataType: "text",
+                    cache: false,
+                    contentType: false, //cuando se envia por frmdata
+                    processData: false, //cuando se envia por frmdata
+                    data: form
+                })
+                .done((mensaje:any)=>{
+                    alert(mensaje);
+                    $("#btnMostrar").click();
+                });
+            }
         }
 
-        ModificarAuto(obj:string) : void {
-            
+        ModificarAuto() : void {
+            let patente : any = $("#patente").val();
+            let marca: any = $("#marca").val();
+            let color : any= $("#color").val();
+            let precio : any= $("#precio").val();
+            if(patente !== "" && marca !== "" && color !== "" && precio != null){
+                let auto = new Entidades.AutoBD(patente, marca, color, precio);
+                console.log(auto);
+                console.log(auto.ToJSON());
+                let form:FormData = new FormData();
+                form.append("auto_json", auto.ToJSON());
+                $.ajax({
+                    type:"POST",
+                    url: "./backend/modificarAutoBD.php",
+                    dataType: "text",
+                    cache: false,
+                    contentType: false, //cuando se envia por frmdata
+                    processData: false, //cuando se envia por frmdata
+                    data: form
+                })
+                .done((respuesta)=>{
+                    alert(JSON.stringify(respuesta));
+                    console.log(respuesta);
+                    $("#btnMostrar").click();
+                })
+                .fail(function (jqXHR:any, textStatus:any, errorThrown:any) {
+                    alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+                    console.log(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+                }); 
+            } else {
+                alert("Porfavor, Ingrese todos los valores para poder agregar el usuario");
+            }
+        }
+
+        public static ModificarAutoBD(){
+            (new Manejadora()).ModificarAuto();
         }
     }
 }

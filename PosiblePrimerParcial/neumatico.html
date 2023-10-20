@@ -13,6 +13,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
   <!-- AGREGAR ARCHIVOS JS AQUI -->
+  <script src="./clases/Auto.js"></script>
+  <script src="./clases/AutoBD.js"></script>
   <script src="./clases/Manejadora.js"></script>
 </head>
 
@@ -51,7 +53,7 @@
                   <input type="button" value="Verificar JSON" class="btn btn-light" onclick="PrimerParcial.Manejadora.VerificarAutoJSON()" />
                   <input type="button" value="Agregar sin foto" class="btn btn-primary" onclick="PrimerParcial.Manejadora.AgregarAutoSinFoto()" />
                   <input type="button" value="Mostrar BD" class="btn btn-danger" onclick="PrimerParcial.Manejadora.MostrarAutosBD()" id="btnMostrar"/>
-                  <input type="button" value="Modificar sin foto" class="btn btn-dark" onclick="" />
+                  <input type="button" value="Modificar sin foto" class="btn btn-dark" onclick="PrimerParcial.Manejadora.ModificarAutoBD()" />
                 </td>
               </tr>
             </table>
@@ -66,7 +68,7 @@
           </td>
         </tr>
       </table>
-
+    <img id="imgFoto" src="" alt="">
     <input type="hidden" id="hdnIdModificacion"><!-- PARA MODIFICAR -->
     <div id="divSpinner" style="display:none;position:absolute"><img id="imgSpinner" src="./BACKEND/gif-load.gif" /></div><!-- PARA EL SPINNER -->
   </div>

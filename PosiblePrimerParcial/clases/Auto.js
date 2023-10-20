@@ -9,10 +9,10 @@ var Entidades;
             this.precio = precio;
         }
         ToString() {
-            return `Nombre: ${this.patente}, Correo: ${this.marca}, Clave: ${this.color}, Precio: ${this.precio}`;
+            return `"patente": "${this.patente}", "marca": "${this.marca}", "color": "${this.color}", "precio": "${this.precio}"`;
         }
         ToJSON() {
-            return JSON.stringify(JSON.parse(this.ToString()));
+            return "{" + this.ToString() + "}";
         }
     }
     Entidades.Auto = Auto;

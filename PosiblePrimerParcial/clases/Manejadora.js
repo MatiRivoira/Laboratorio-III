@@ -1,5 +1,7 @@
 "use strict";
 /// <reference path="./node_modules/@types/jquery/index.d.ts">
+/// <reference path="Auto.ts" />
+/// <reference path="AutoBD.ts" />
 /// <reference path="Iparte2.ts" />
 var PrimerParcial;
 (function (PrimerParcial) {
@@ -158,11 +160,10 @@ var PrimerParcial;
                         let objString = $(this).attr("data-obj");
                         let obj = JSON.parse(objString);
                         console.log(obj);
-                        $("#id").val(obj.id);
-                        $("#nombre").val(obj.nombre);
-                        $("#correo").val(obj.correo);
-                        $("#clave").val(obj.clave);
-                        $("#cboPerfiles").val(obj.id_perfil);
+                        $("#patente").val(obj.patente);
+                        $("#marca").val(obj.marca);
+                        $("#precio").val(obj.precio);
+                        $("#color").val(obj.color);
                     });
                     $('[data-action="eliminar"]').on("click", function () {
                         let objString = $(this).attr("data-obj");
@@ -182,23 +183,61 @@ var PrimerParcial;
             });
         }
         EliminarAuto(obj) {
-            let form = new FormData();
-            form.append("auto_json", JSON.stringify(obj));
-            $.ajax({
-                type: "POST",
-                url: "./backend/eliminarAutoBD.php",
-                dataType: "text",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form
-            })
-                .done((mensaje) => {
-                alert(mensaje);
-                $("#btnMostrar").click();
-            });
+            let auto = new Entidades.AutoBD(obj.patente, obj.marca, obj.color, obj.precio, obj.pathFoto);
+            if (confirm(`Esta seguro de que quiere eliminar el auto con la patente: ${auto.patente} y marca ${auto.marca}`)) {
+                let form = new FormData();
+                form.append("auto_json", JSON.stringify(obj));
+                $.ajax({
+                    type: "POST",
+                    url: "./backend/eliminarAutoBD.php",
+                    dataType: "text",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form
+                })
+                    .done((mensaje) => {
+                    alert(mensaje);
+                    $("#btnMostrar").click();
+                });
+            }
         }
-        ModificarAuto(obj) {
+        ModificarAuto() {
+            let patente = $("#patente").val();
+            let marca = $("#marca").val();
+            let color = $("#color").val();
+            let precio = $("#precio").val();
+            if (patente !== "" && marca !== "" && color !== "" && precio != null) {
+                let auto = new Entidades.AutoBD(patente, marca, color, precio);
+                console.log(auto);
+                console.log(auto.ToJSON());
+                let form = new FormData();
+                form.append("auto_json", auto.ToJSON());
+                $.ajax({
+                    type: "POST",
+                    url: "./backend/modificarAutoBD.php",
+                    dataType: "text",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form
+                })
+                    .done((respuesta) => {
+                    alert(JSON.stringify(respuesta));
+                    console.log(respuesta);
+                    $("#btnMostrar").click();
+                })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+                    console.log(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+                });
+            }
+            else {
+                alert("Porfavor, Ingrese todos los valores para poder agregar el usuario");
+            }
+        }
+        static ModificarAutoBD() {
+            (new Manejadora()).ModificarAuto();
         }
     }
     PrimerParcial.Manejadora = Manejadora;

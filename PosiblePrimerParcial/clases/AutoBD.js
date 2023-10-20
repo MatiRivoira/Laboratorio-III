@@ -1,4 +1,5 @@
 "use strict";
+/// <reference path="Auto.ts" />
 var Entidades;
 (function (Entidades) {
     class AutoBD extends Entidades.Auto {
@@ -7,7 +8,9 @@ var Entidades;
             this.pathFoto = pathFoto;
         }
         ToJSON() {
-            return JSON.stringify(JSON.parse(this.ToString() + `, pathFoto: ${this.pathFoto}`));
+            let autoString = super.ToString();
+            let autoJson = autoString + `, "pathFoto": "${this.pathFoto}"`;
+            return "{" + autoJson + "}";
         }
     }
     Entidades.AutoBD = AutoBD;
