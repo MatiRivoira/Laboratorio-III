@@ -1,0 +1,28 @@
+.nav-link {
+	color: white;
+}
+
+.nav-link:hover {
+	color: yellow;
+}
+
+.btn {
+	padding: 8px;
+}
+
+.btnEliminar {
+	background-color: red;
+	margin-left: 10px;
+}
+
+.btnModificar {
+	background-color: aqua;
+}
+
+.btnEliminar svg {
+	color: white;
+}
+
+.btnModificar svg {
+	color: white;
+}
